@@ -1,4 +1,4 @@
-const {people}= require('../data')
+let {people}= require('../data')
 
 //get list of all people in array
 const getPeople = (req,res)=>{
@@ -46,7 +46,7 @@ const deletePerson = (req,res)=>{
     const person = people.find((person)=> person.id === id)
     if(person){
         people = people.filter(person=> person.id !== id)
-        return res.status(200).json({ success: true, data: newPeople });
+        return res.status(200).json({ success: true, data: people });
     }
     else{
         return res.status(404).json({success:false,message:'Person not found'})
