@@ -9,7 +9,7 @@ const getTasks = asyncWrapper (async (req,res)=>{
 })
 
 //get a task
-const getSingleTask = asyncWrapper(async(req,res)=>{
+const getSingleTask = asyncWrapper(async(req,res,next)=>{
    
     const {id: taskID} = req.params;
     const task = await Task.findOne({_id : taskID})
@@ -27,7 +27,7 @@ const createTask= asyncWrapper(async (req,res)=>{
 })
 
 //update a task
-const updateTask = asyncWrapper(async(req,res)=>{
+const getSingleTask = asyncWrapper(async(req,res,next)=>{
     const {id:taskID} = req.params;
     const task = await Task.findOneAndUpdate({_id : taskID},req.body)
     if(!task){
@@ -37,7 +37,7 @@ const updateTask = asyncWrapper(async(req,res)=>{
 })
 
 //remove a task
-const deleteTask= asyncWrapper(async(req,res)=>{
+const getSingleTask = asyncWrapper(async(req,res,next)=>{
     const {id: taskID} = req.params;
     const task = await Task.findOneAndDelete({_id : taskID})
     if(!task){
