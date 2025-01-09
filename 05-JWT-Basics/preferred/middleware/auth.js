@@ -4,10 +4,10 @@ const { UnauthenticatedError } = require('../errors')
 const authenticationMiddleware = async (req, res, next) => {
 
     const authHeader = req.headers.authorization
-  
+    
     //check if the request containt the token
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    throw new UnauthenticatedError('No token provided')
+   return next(new UnauthenticatedError('No token provided'))
   }
 
   const token = authHeader.split(' ')[1]
@@ -18,8 +18,7 @@ const authenticationMiddleware = async (req, res, next) => {
     req.user = { id, username } // add this to request, so can access it in controller
     next() // next go to sayHello function 
   } catch (error) {
-    console.error('JWT verification failed:', error.message); 
-    throw new UnauthenticatedError('Not authorized to access this route')
+    next(new UnauthenticatedError('Not authorized to access this route')) 
   }
 }
 
